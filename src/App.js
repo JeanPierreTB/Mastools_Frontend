@@ -1,31 +1,20 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Registro from './Registro';
+import Slidebar from './components/Slidebar/Slidebar';
+import Barup from './components/Barup/Barup';
+import Principal from './Pages/Principal/Principal';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <nav>
-          <Link to="/">Página Principal</Link> | <Link to="/registro">Ir a Sistema de Reservas de Libros</Link>
-        </nav>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/registro" element={<Registro />} />
-        </Routes>
-      </div>
-    </Router>
+    <div>
+      <Barup/>
+      <Slidebar/>
+      <Principal/>
+    </div>
+      
+
   );
 }
 
-// Nuevo componente para la página principal
-function Home() {
-  return (
-    <div>
-      <h1>Página Principal</h1>
-      <p>Bienvenido a la página principal.</p>
-    </div>
-  );
-}
+
 
 export default App;
