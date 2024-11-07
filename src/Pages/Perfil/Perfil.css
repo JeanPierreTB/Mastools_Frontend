@@ -1,0 +1,28 @@
+.container-perfil{
+}
+.container-perfil-datos{
+    border: 0.20rem solid black;
+    width: 50rem;
+    height: 25rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    gap:2rem;
+}
+
+.container-perfil-datos-foto img{
+    padding: 1rem 1rem;
+    width: 20rem;
+    height: 20rem;
+}
+
+
+.container-perfil-datos-foto p{
+    text-align: center;
+}
+
+.container-perfil-datos-info{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}

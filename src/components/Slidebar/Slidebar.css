@@ -6,3 +6,8 @@
    text-align: center; 
    padding:1px;
 }
+
+
+.slidebar-container .barra{
+   cursor: pointer;
+}
