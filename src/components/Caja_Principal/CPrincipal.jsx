@@ -2,10 +2,13 @@ import "./Cprincipal.css"
 
 const CPrincipal= ({nombre,cantidad,img})=>{
     return (
-        <div>
-            <p>{nombre}</p>
-            <p>{cantidad}</p>
-            <img src={img} alt={nombre}></img>
+        <div className="container-cprincipal">
+            <div>
+                <p>{nombre}</p>
+                <p>{cantidad}</p>
+            </div>
+            
+            <img id="imagen" src={img} alt={nombre}></img>
         </div>
     )
 

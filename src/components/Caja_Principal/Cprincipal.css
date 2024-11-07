@@ -1,0 +1,18 @@
+.container-cprincipal{
+    display: flex;
+    gap:1rem;
+    align-items: center;
+    width: 15rem;
+    height: 8rem;
+    justify-content: center;
+    border: 0.20rem solid black;
+    padding: 1rem 1rem;
+    border-radius: 1rem;
+}
+
+.container-cprincipal #imagen{
+    width: 9rem;
+    height: 9rem;
+}
+
+

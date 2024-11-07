@@ -1,3 +1,9 @@
 .container-app{
-  background-color: red;
+  display: flex;
+  flex-direction:column;
+}
+
+.container-page{
+    display: flex;
+    gap:2rem;
 }
