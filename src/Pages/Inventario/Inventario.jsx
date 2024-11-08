@@ -1,8 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import CInventario from "../../components/Caja_Inventario/CInventario";
 import Textfield from "../../components/Textfield/Textfiled";
 import "./Inventario.css"
 
 const Inventario= ()=>{
+
+    const navigate=useNavigate();
+
     return (
         <div className="container-inventario">
             <div>
@@ -22,7 +26,7 @@ const Inventario= ()=>{
                         <option>Tipo 4</option>
                     </select>
                 </div>
-                <button>Agregar productos</button>
+                <button style={{cursor:'pointer'}} onClick={()=>navigate('/agregar-producto')}>Agregar productos</button>
             </div>
 
             <div className="container-inventario-des">

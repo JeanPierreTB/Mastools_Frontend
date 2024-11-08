@@ -1,0 +1,15 @@
+.container-aproducto{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
+
+
+.botones{
+    width: 10rem;
+    border: none;
+    color: white;
+    border-radius: 1rem;
+    padding: 1rem 1rem;
+    background-color: rgb(57, 57, 201);
+}
