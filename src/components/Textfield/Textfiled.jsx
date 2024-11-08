@@ -21,7 +21,7 @@ function Textfield({texto, onChange, isPassword = false }) {
             "& .MuiOutlinedInput-root": {
                 "& fieldset": {
                     border: "2px solid #6750A4",
-                    borderColor: "#6750A4",
+                    borderColor: "black",
                     hover: "#6750A4"
                 }  
             },

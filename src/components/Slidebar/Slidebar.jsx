@@ -9,7 +9,7 @@ const Slidebar= ()=>{
         <div className="slidebar-container">
             <p className="barra" onClick={()=>navigate('/')}>Inicio</p>
             <p className="barra" onClick={()=>navigate('/perfil')}>Perfil</p>
-            <p className="barra">Inventario</p>
+            <p className="barra" onClick={()=>navigate('/inventario')}>Inventario</p>
             <p className="barra">Analitica</p>
 
         </div>
