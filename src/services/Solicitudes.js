@@ -1,12 +1,8 @@
 import { URL } from "./URL"
 
-export async function Producto_Estadisticas (proveedorID){
-    return fetch(`${URL}/productos-estadisticas/${proveedorID}`)
+export async function Solicitudes (proveedorID){
+    return fetch(`${URL}/visualizar-solicitudes/${proveedorID}`)
       .then((response) => response.json()) 
       .then((data) => data)
       .catch((e) => {console.error(`Ocurrió un error: ${e}`)});
   };
-  
-
-
-  
