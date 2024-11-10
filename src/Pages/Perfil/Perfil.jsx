@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Textfield from "../../components/Textfield/Textfiled";
 import "./Perfil.css";
 import { Datos_usuario } from "../../services/Datos_usuario";
+import { Actualizacion_datos } from "../../services/Actualizacion_datos";
 
 const Perfil = () => {
   const [datos, setDatos] = useState({
@@ -9,8 +10,11 @@ const Perfil = () => {
     apellido: '',
     correo: '',
     contrasena: '',
-    dni: ''
+    dni: '',
+    foto: null // Asegúrate de tener la propiedad 'foto' en los datos
   });
+
+  const fileInputRef = useRef(null); // Crear referencia para el input de archivo
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -21,14 +25,36 @@ const Perfil = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const id = localStorage.getItem('id_usuario');
-      const datosInfo = await Datos_usuario(id);
-      setDatos(datosInfo.usuario);
-    };
-
     fetchData();
   }, []);
+
+  const fetchData = async () => {
+    const id = localStorage.getItem('id_usuario');
+    const datosInfo = await Datos_usuario(id);
+    setDatos(datosInfo.usuario);
+  };
+
+  const handleclik = async () => {
+    const id = localStorage.getItem('id_usuario');
+    console.log(datos);
+    const response = await Actualizacion_datos(datos, id);
+    alert(response.mensaje);
+    fetchData();
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0]; // Obtener el archivo seleccionado
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setDatos(prevData => ({
+          ...prevData,
+          foto: reader.result // Guardamos la URL de la imagen
+        }));
+      };
+      reader.readAsDataURL(file); // Leer el archivo como URL
+    }
+  };
 
   return (
     <div className="container-perfil">
@@ -37,7 +63,17 @@ const Perfil = () => {
       <p><strong>Bienvenido, estimado Proveedor!</strong></p>
       <div className="container-perfil-datos">
         <div className="container-perfil-datos-foto">
-          <img src="https://www.21-draw.com/wp-content/uploads/2022/06/character-archetype-the-hero.jpg" alt="foto" />
+          <img 
+            src={datos.foto ? datos.foto : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"} 
+            alt="foto" 
+            onClick={() => fileInputRef.current.click()} // Usamos ref para hacer clic en el input
+          />
+          <input 
+            type="file" 
+            ref={fileInputRef} // Asignamos la referencia al input
+            style={{ display: 'none' }} // Hacemos el input invisible
+            onChange={handleFileChange} 
+          />
           <Textfield
             texto="Nombre"
             inputValue={datos.nombre}
@@ -71,7 +107,7 @@ const Perfil = () => {
             name="dni"
             onChange={handleInputChange}
           />
-          <button className="boton">Actualizar</button>
+          <button onClick={() => handleclik()} className="boton">Actualizar</button>
         </div>
       </div>
     </div>
