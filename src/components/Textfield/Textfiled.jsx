@@ -4,12 +4,13 @@ import TextField from '@mui/material/TextField';
 import styles from './Textfield.module.css'
 import { colors } from '@mui/material';
 
-function Textfield({texto,numero=false ,onChange, isPassword = false,inputValue }) {
+function Textfield({texto,numero=false ,onChange, isPassword = false,inputValue,name }) {
     return (
         <TextField 
         className={`${styles.textField} ${styles.Textfield_textField}`} 
         id="outlined-basic"
         label= {texto}
+        name={name}
         onChange={onChange}
         value={inputValue}
         variant="outlined"

@@ -10,19 +10,36 @@
     gap:2rem;
 }
 
+.container-perfil-datos-foto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .container-perfil-datos-foto img{
     padding: 1rem 1rem;
     width: 20rem;
-    height: 20rem;
+    height: 18rem;
 }
 
 
-.container-perfil-datos-foto p{
-    text-align: center;
-}
+
 
 .container-perfil-datos-info{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap:1rem;
+}
+
+
+.container-perfil-datos-info .boton{
+    margin-top: 1rem;
+    border:none;
+    background-color: rgb(104, 43, 43);
+    border-radius: 1rem;
+    padding: 0.80rem 0.80rem;
+    width: 10rem;
+    color:white;
 }

@@ -9,17 +9,21 @@ const Principal = () => {
 
   const [Productos_so, setProducto_so] = useState([]);
   const [Productos_bajo, setProducto_bajo] = useState([]);
+  const [Solicitudes_vencer, setSolicitudes_vencer] = useState([]);
   const [index, setIndex] = useState(0);
   const [index2, setIndex2] = useState(0);
+  const [index3, setIndex3] = useState(0);  
 
   useEffect(() => {
     const fetchData = async () => {
       const id = localStorage.getItem('id_usuario');
       const productos_solicitados = await Producto_Estadisticas(id);
       const productos_bajo_stock = await Producto_bajo_servicie(id);
+      const solicitudes_info = await Solicitudes(id);
 
       setProducto_so(productos_solicitados.resultado);
       setProducto_bajo(productos_bajo_stock.productos);
+      setSolicitudes_vencer(solicitudes_info.solicitud);
     };
 
     fetchData();
@@ -46,6 +50,18 @@ const Principal = () => {
   const handleprev2 = () => {
     if (index2 > 0) {
       setIndex2(index2 - 1);
+    }
+  };
+
+  const handleNext3 = () => {  
+    if (index3 < Solicitudes_vencer.length - 2) {
+      setIndex3(index3 + 1);
+    }
+  };
+
+  const handleprev3 = () => { 
+    if (index3 > 0) {
+      setIndex3(index3 - 1);
     }
   };
 
@@ -103,21 +119,21 @@ const Principal = () => {
           <i
             className="fas fa-arrow-up"
             style={{ fontSize: '17px', cursor: 'pointer', marginRight: '10px' }}
+            onClick={handleprev3}  
           ></i>
 
-          <CPrincipal
-            nombre="Producto 1"
-            cantidad="10"
-            img="https://i0.wp.com/grupocasalima.com/wp-content/uploads/2022/04/tipos-de-fierros-de-construccion.webp?fit=1000%2C706&ssl=1"
-          />
-          <CPrincipal
-            nombre="Producto 2"
-            cantidad="20"
-            img="https://i0.wp.com/grupocasalima.com/wp-content/uploads/2022/04/tipos-de-fierros-de-construccion.webp?fit=1000%2C706&ssl=1"
-          />
+          {Solicitudes_vencer.slice(index3, index3 + 2).map((solicitud, i) => (
+            <CPrincipal
+              key={i}
+              nombre={solicitud.descripcion}  
+              cantidad={solicitud.cantidad}    
+              img={solicitud.imagen}           
+            />
+          ))}
           <i
             className="fas fa-arrow-down"
             style={{ fontSize: '17px', cursor: 'pointer' }}
+            onClick={handleNext3}  
           ></i>
         </div>
       </div>
