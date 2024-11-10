@@ -1,7 +1,26 @@
 import CPrincipal from "../../components/Caja_Principal/CPrincipal";
-import "./Principal.css"
+import "./Principal.css";
+import { Producto_Estadisticas } from "../../services/Productos_Estadisticas";
+import { useEffect, useState } from "react";
 
 const Principal = ()=>{
+
+  const [Productos_so, setProducto_so] = useState([]);
+  const [Productos_bajo, setProducto_bajo] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const productos_solicitados = await Producto_Estadisticas(1);
+      const productos_bajostock = await Producto_Estadisticas(1, 0);
+      
+      console.log("Productos solicitados", productos_solicitados);
+      console.log("Productos bajo stock", productos_bajostock);
+    };
+
+    fetchData();
+  }, []); 
+
+
     return (
         <div className="container-principal">
 

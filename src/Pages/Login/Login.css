@@ -1,0 +1,36 @@
+.container-login{
+    height: 38rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-textfield-login{
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+}
+
+.container-login p{
+    width: 20rem;
+    text-align: right;
+}
+
+.container-botones-login{
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:2rem;
+}
+
+.container-botones-login button{
+    margin-top: 1rem;
+    border:none;
+    background-color: rgb(104, 43, 43);
+    border-radius: 1rem;
+    padding: 0.80rem 0.80rem;
+    width: 10rem;
+    color:white;
+}

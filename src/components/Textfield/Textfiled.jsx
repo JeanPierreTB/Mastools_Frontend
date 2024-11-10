@@ -23,7 +23,7 @@ function Textfield({texto,numero=false ,onChange, isPassword = false }) {
                 "& fieldset": {
                     border: "2px solid #6750A4",
                     borderColor: "black",
-                    hover: "#6750A4"
+                    hover: "rgb(104, 43, 43)"
                 }  
             },
             "& .Mui-focused fieldset": {
