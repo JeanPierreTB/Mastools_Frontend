@@ -11,10 +11,10 @@ const Perfil = () => {
     correo: '',
     contrasena: '',
     dni: '',
-    foto: null // Asegúrate de tener la propiedad 'foto' en los datos
+    foto: null 
   });
 
-  const fileInputRef = useRef(null); // Crear referencia para el input de archivo
+  const fileInputRef = useRef(null); 
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -43,16 +43,16 @@ const Perfil = () => {
   };
 
   const handleFileChange = (e) => {
-    const file = e.target.files[0]; // Obtener el archivo seleccionado
+    const file = e.target.files[0]; 
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setDatos(prevData => ({
           ...prevData,
-          foto: reader.result // Guardamos la URL de la imagen
+          foto: reader.result 
         }));
       };
-      reader.readAsDataURL(file); // Leer el archivo como URL
+      reader.readAsDataURL(file); 
     }
   };
 
@@ -66,12 +66,12 @@ const Perfil = () => {
           <img 
             src={datos.foto ? datos.foto : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"} 
             alt="foto" 
-            onClick={() => fileInputRef.current.click()} // Usamos ref para hacer clic en el input
+            onClick={() => fileInputRef.current.click()} 
           />
           <input 
             type="file" 
-            ref={fileInputRef} // Asignamos la referencia al input
-            style={{ display: 'none' }} // Hacemos el input invisible
+            ref={fileInputRef} 
+            style={{ display: 'none' }} 
             onChange={handleFileChange} 
           />
           <Textfield
