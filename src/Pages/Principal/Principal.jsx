@@ -13,21 +13,36 @@ const Principal = () => {
   const [index, setIndex] = useState(0);
   const [index2, setIndex2] = useState(0);
   const [index3, setIndex3] = useState(0);  
+  const [rol,setrol]=useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const id = localStorage.getItem('id_usuario');
-      const productos_solicitados = await Producto_Estadisticas(id);
-      const productos_bajo_stock = await Producto_bajo_servicie(id);
-      const solicitudes_info = await Solicitudes(id);
+    const roldata = localStorage.getItem('rol');
+    setrol(roldata);
+  
+    if (roldata === "0") fetchData();
+    else if (roldata === "1") fetchData2();
+  
+    return () => {
 
-      setProducto_so(productos_solicitados.resultado);
-      setProducto_bajo(productos_bajo_stock.productos);
-      setSolicitudes_vencer(solicitudes_info.solicitud);
     };
-
-    fetchData();
   }, []);
+  const fetchData = async () => {
+  
+    const id = localStorage.getItem('id_usuario');
+    const productos_solicitados = await Producto_Estadisticas(id);
+    const productos_bajo_stock = await Producto_bajo_servicie(id);
+    const solicitudes_info = await Solicitudes(id);
+
+
+    setProducto_so(productos_solicitados.resultado);
+    setProducto_bajo(productos_bajo_stock.productos);
+    setSolicitudes_vencer(solicitudes_info.solicitud);
+  };
+
+  const fetchData2=async ()=>{
+    console.log("logeado el admin")
+  }
+
 
   const handleNext = () => {
     if (index < Productos_bajo.length - 2) {
@@ -67,7 +82,9 @@ const Principal = () => {
 
   return (
     <div className="container-principal">
-      <div>
+      {rol==="0" ? (
+        <>
+          <div>
         <p><strong>Productos de bajo stock</strong></p>
         <div className="container-producto-stock">
           <i
@@ -137,6 +154,14 @@ const Principal = () => {
           ></i>
         </div>
       </div>
+        
+        </>
+      ):(
+        <>
+          <p>Comprar productos!</p>
+        </>
+      )}
+      
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { URL } from "./URL"
 
-export async function Actualizacion_datos(datos,id){
-    return fetch(`${URL}/actualizar-proveedor`,{
+export async function Actualizacion_administrador(datos,id){
+    return fetch(`${URL}/actualizar-administrador`,{
         method:'PUT',
         headers:{
             'Content-Type': 'application/json',

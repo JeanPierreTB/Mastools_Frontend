@@ -15,11 +15,21 @@ const Login=()=>{
     const handleclik_ingreso=async()=>{
 
         const inicio=await Iniciar_sesion(correo,contrasena);
+        console.log(inicio)
+    
+        if(!inicio.res) {
+            return alert(inicio.mensaje)
+        }
 
-        if(!inicio.res) return alert(inicio.mensaje)
+        else if(inicio.res){
+            localStorage.setItem("id_usuario",inicio.usuario.id)
+            localStorage.setItem("rol", inicio.rol)
+            return navigate('/principal')
+        }
 
-        localStorage.setItem("id_usuario",inicio.usuario.id)
-        return navigate('/principal')
+        
+
+        
     }
 
     return (
