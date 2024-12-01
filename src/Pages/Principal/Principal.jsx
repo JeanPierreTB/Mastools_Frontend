@@ -14,6 +14,9 @@ const Principal = () => {
   const [Solicitudes_vencer, setSolicitudes_vencer] = useState([]);
   const [Productos_dis, setProducto_dis] = useState([]);
   const [indexAdmin, setIndexAdmin] = useState(0);
+  const [index, setIndex] = useState(0);
+  const [index2, setIndex2] = useState(0);
+  const [index3, setIndex3] = useState(0); 
   const [rol, setRol] = useState(null);
   const [searchTerm, setSearchTerm] = useState(""); 
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -67,36 +70,123 @@ const Principal = () => {
     setIndexAdmin(0); 
   };
 
+  const handleNext = () => {
+    if (index < Productos_bajo.length - 2) {
+      setIndex(index + 1);
+    }
+  };
+
+  const handleprev = () => {
+    if (index > 0) {
+      setIndex(index - 1);
+    }
+  };
+
+  const handleNext2 = () => {
+    if (index2 < Productos_so.length - 2) {
+      setIndex2(index2 + 1);
+    }
+  };
+
+  const handleprev2 = () => {
+    if (index2 > 0) {
+      setIndex2(index2 - 1);
+    }
+  };
+
+  const handleNext3 = () => {  
+    if (index3 < Solicitudes_vencer.length - 2) {
+      setIndex3(index3 + 1);
+    }
+  };
+
+  const handleprev3 = () => { 
+    if (index3 > 0) {
+      setIndex3(index3 - 1);
+    }
+  };
+
+  const handleclik=(producto)=>{
+    localStorage.setItem('productoc',JSON.stringify(producto));
+    navigate('/cproducto')
+  }
+
   return (
     <div className="container-principal">
       {rol === "0" ? (
         <>
-          <div>
-            <p><strong>Productos de bajo stock</strong></p>
-            <div className="container-producto-stock">
-              {Productos_bajo.slice(0, 2).map((producto, i) => (
-                <CPrincipal
-                  key={i}
-                  nombre={producto.descripcion}
-                  cantidad={producto.cantidad}
-                  img={producto.imagen}
-                />
-              ))}
-            </div>
+        <div>
+      <p><strong>Productos de bajo stock</strong></p>
+      <div className="container-producto-stock">
+        <i
+          className="fas fa-arrow-left"
+          style={{ fontSize: '17px', cursor: 'pointer', marginRight: '10px' }}
+          onClick={handleprev}
+        ></i>
+        {Productos_bajo.slice(index, index + 2).map((producto, i) => (
+          <CPrincipal
+            key={i}
+            nombre={producto.descripcion}  
+            cantidad={producto.cantidad}    
+            img={producto.imagen}           
+          />
+        ))}
+        <i
+          className="fas fa-arrow-right"
+          style={{ fontSize: '17px', cursor: 'pointer' }}
+          onClick={handleNext}
+        ></i>
+      </div>
 
-            <p><strong>Productos más solicitados</strong></p>
-            <div className="container-producto-stock">
-              {Productos_so.slice(0, 2).map((producto, i) => (
-                <CPrincipal
-                  key={i}
-                  nombre={producto.Producto.descripcion}
-                  cantidad={producto.precio_total.toFixed(2)}
-                  img={producto.Producto.imagen}
-                />
-              ))}
-            </div>
-          </div>
-        </>
+      <p><strong>Productos más solicitados</strong></p>
+      <div className="container-producto-stock">
+        <i
+          className="fas fa-arrow-left"
+          style={{ fontSize: '17px', cursor: 'pointer', marginRight: '10px' }}
+          onClick={handleprev2}
+        ></i>
+        {Productos_so.slice(index2, index2 + 2).map((producto, i) => (
+          <CPrincipal
+            key={i}
+            nombre={producto.Producto.descripcion}  
+            cantidad={producto.precio_total.toFixed(2)}        
+            img={producto.Producto.imagen}          
+          />
+        ))}
+        <i
+          className="fas fa-arrow-right"
+          style={{ fontSize: '17px', cursor: 'pointer' }}
+          onClick={handleNext2}
+        ></i>
+      </div>
+    </div>
+
+    <div className="container-producto-stock-vertical">
+      <p id="text"><strong>Solicitudes de clientes</strong></p>
+      <div className="container-producto-solicitados">
+        <i
+          className="fas fa-arrow-up"
+          style={{ fontSize: '17px', cursor: 'pointer', marginRight: '10px' }}
+          onClick={handleprev3}  
+        ></i>
+
+        {Solicitudes_vencer.slice(index3, index3 + 2).map((solicitud, i) => (
+          <CPrincipal
+            key={i}
+            nombre={solicitud.descripcion}  
+            cantidad={solicitud.cantidad}    
+            img={solicitud.imagen}           
+          />
+        ))}
+        <i
+          className="fas fa-arrow-down"
+          style={{ fontSize: '17px', cursor: 'pointer' }}
+          onClick={handleNext3}  
+        ></i>
+      </div>
+    </div>
+      
+      </>
       ) : (
         <div className="admin-productos-disponibles">
          
@@ -132,7 +222,7 @@ const Principal = () => {
                 nombre={producto.descripcion}
                 cantidad={producto.precio}
                 img={producto.imagen}
-                onclick={()=>navigate('/cproducto')}
+                onclick={()=>handleclik(producto)}
               />
             ))}
           </div>

@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import styles from './Textfield.module.css'
 import { colors } from '@mui/material';
 
-function Textfield({texto,numero=false ,onChange, isPassword = false,inputValue,name }) {
+function Textfield({texto,numero=false ,onChange, isPassword = false,inputValue,name,readOnly = false }) {
     return (
         <TextField 
         className={`${styles.textField} ${styles.Textfield_textField}`} 
@@ -18,6 +18,13 @@ function Textfield({texto,numero=false ,onChange, isPassword = false,inputValue,
         autoComplete={isPassword ? "new-password" : "off"}
         autoCorrect="off"
         type={isPassword ? "password" :numero ? "number":"text"}
+        InputProps={{
+            readOnly: readOnly,
+            style: {
+                backgroundColor: readOnly ? '#f0f0f0' : 'transparent', 
+                color: readOnly ? '#888' : 'inherit', 
+            },
+        }}
         
         sx={{
             "& .MuiOutlinedInput-root": {
