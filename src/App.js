@@ -11,6 +11,7 @@ import AProducto from './Pages/AProducto/AProducto';
 import Login from './Pages/Login/Login';
 import Registro from './Pages/Registro/Registro';
 import CContrasena from './Pages/CContrasena/CContrasena';
+import CProducto from './Pages/CProducto/CProducto';
 
 function App() {
   const Layout = ({ children }) => (
@@ -65,6 +66,15 @@ function App() {
             </Layout>
           }
         />
+
+        <Route path='/cproducto'
+          element={
+            <Layout>
+              <CProducto/>
+            </Layout>
+          }
+         /> 
+
       </Routes>
     </Router>
   );
