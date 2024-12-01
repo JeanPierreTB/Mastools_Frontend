@@ -1,0 +1,11 @@
+.select-estilo {
+    background: transparent;
+    border: 2px solid black;
+    width: 20rem;
+    color: inherit;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    outline: none;
+}

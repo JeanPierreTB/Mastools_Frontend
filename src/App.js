@@ -12,6 +12,7 @@ import Login from './Pages/Login/Login';
 import Registro from './Pages/Registro/Registro';
 import CContrasena from './Pages/CContrasena/CContrasena';
 import CProducto from './Pages/CProducto/CProducto';
+import SolicitudesP from './Pages/Solicitudes/Solicitudes';
 
 function App() {
   const Layout = ({ children }) => (
@@ -74,6 +75,15 @@ function App() {
             </Layout>
           }
          /> 
+         <Route path='/solicitudes'
+            element={
+              <Layout>
+                <SolicitudesP/>
+              </Layout>
+
+            }
+
+         />
 
       </Routes>
     </Router>
