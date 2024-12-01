@@ -9,6 +9,7 @@ const Slidebar= ()=>{
 
     useEffect(()=>{
         const data=localStorage.getItem('rol');
+        console.log(data);
         setrol(data);
     },[])
 
@@ -17,7 +18,7 @@ const Slidebar= ()=>{
             <div>
                 <p className="barra" onClick={()=>navigate('/principal')}>Inicio</p>
                 <p className="barra" onClick={()=>navigate('/perfil')}>Perfil</p>
-                {rol===0? (
+                {rol==='0'? (
                     <p className="barra" onClick={()=>navigate('/inventario')}>Inventario</p>
                 ):(
                     <p className="barra" onClick={()=>navigate('/solicitudes')}>Solicitudes</p>
